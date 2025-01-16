@@ -6,6 +6,5 @@ class Solution:
                 nums.pop(i)
             else:
                 i+=1
-        nums.sort()
         return i
         
