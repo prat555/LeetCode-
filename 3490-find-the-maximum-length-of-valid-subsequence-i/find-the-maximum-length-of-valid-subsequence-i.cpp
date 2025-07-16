@@ -8,8 +8,7 @@ class Solution {
       for (int y = 0; y < 2; ++y)
         dp[x % 2][y] = dp[y][x % 2] + 1;
 
-    return accumulate(dp.begin(), dp.end(), 0,
-                      [](int acc, const vector<int>& row) {
+    return accumulate(dp.begin(), dp.end(), 0,[](int acc, const vector<int>& row) {
       return max(acc, ranges::max(row));
     });
   }
