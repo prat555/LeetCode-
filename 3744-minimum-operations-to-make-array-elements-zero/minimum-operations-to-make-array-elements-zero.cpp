@@ -1,6 +1,3 @@
-#include <vector>
-using namespace std;
-
 class Solution {
 public:
     long long minOperations(vector<vector<int>>& queries) {
@@ -14,7 +11,6 @@ public:
     }
 
 private:
-    // Computes total operations needed to reduce all numbers from 1 to n to zero
     long long getOperations(long long n) {
         if (n <= 0) return 0;
         long long res = 0;
