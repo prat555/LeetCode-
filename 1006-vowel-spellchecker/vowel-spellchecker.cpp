@@ -1,46 +1,36 @@
 class Solution {
- public:
-  vector<string> spellchecker(vector<string>& wordlist,
-                              vector<string>& queries) {
-    vector<string> ans;
-    unordered_map<string, string> dict;
-
-    for (const string& word : wordlist) {
-      dict.insert({word, word});
-      dict.insert({lowerKey(word), word});
-      dict.insert({vowelKey(word), word});
+public:
+    static constexpr unsigned vowMask=(1<<('A'&31))+(1<<('E'&31))+(1<<('I'&31))+(1<<('O'&31))+(1<<('U'&31));
+    static string tolow(string w) {
+        for (char& c : w) c=tolower(c);
+        return w;
     }
 
-    for (const string& query : queries)
-      if (const auto it = dict.find(query); it != dict.cend())
-        ans.push_back(it->second);
-      else if (const auto it = dict.find(lowerKey(query)); it != dict.cend())
-        ans.push_back(it->second);
-      else if (const auto it = dict.find(vowelKey(query)); it != dict.cend())
-        ans.push_back(it->second);
-      else
-        ans.push_back("");
+    static string toDeV(string w) {
+        for (char& c : w)
+            if((vowMask>>(c&31))&1) c='$';
+        return w;
+    }
 
-    return ans;
-  }
+    static vector<string> spellchecker(vector<string>& wordlist, vector<string>& queries) {
+        const int n=wordlist.size();
+        unordered_set<string> W(wordlist.begin(), wordlist.end());
+        unordered_map<string, string> Wlow, WdeV;
+        Wlow.reserve(n), WdeV.reserve(n);
 
- private:
-  string lowerKey(const string& word) {
-    string s{"$"};
-    for (const char c : word)
-      s += tolower(c);
-    return s;
-  }
+        for (const auto& w : wordlist) {
+            const string lw = tolow(w), dv = toDeV(lw);
+            if (!Wlow.count(lw)) Wlow[lw] = w;
+            if (!WdeV.count(dv)) WdeV[dv] = w;
+        }
 
-  string vowelKey(const string& word) {
-    string s;
-    for (const char c : word)
-      s += isVowel(c) ? '*' : tolower(c);
-    return s;
-  }
-
-  bool isVowel(char c) {
-    static constexpr string_view kVowels = "aeiouAEIOU";
-    return kVowels.find(c) != string_view::npos;
-  }
+        for (auto& q : queries) {
+            if (W.count(q)) continue;
+            string low = tolow(q), deV = toDeV(low);
+            if (Wlow.count(low)) q = Wlow[low];
+            else if (WdeV.count(deV)) q = WdeV[deV];
+            else q = "";
+        }
+        return queries;
+    }
 };
