@@ -1,6 +1,4 @@
-# Write your MySQL query statement below
-SELECT Employee.name, Bonus.bonus
-FROM Employee
-LEFT JOIN Bonus
-  USING (empId)
-WHERE IFNULL(Bonus.bonus, 0) < 1000;
+select e.name, b.bonus
+from employee e left join bonus b
+using (empId)
+where b.bonus<1000 || b.bonus is null
