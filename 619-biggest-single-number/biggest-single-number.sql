@@ -1,9 +1,2 @@
-WITH
-  UniqueNumbers AS (
-    SELECT num
-    FROM MyNumbers
-    GROUP BY 1
-    HAVING COUNT(num) = 1
-  )
-SELECT MAX(num) AS num
-FROM UniqueNumbers;
+select max(num) as num from mynumbers where num in 
+(select num from mynumbers group by 1 having count(num)=1)
