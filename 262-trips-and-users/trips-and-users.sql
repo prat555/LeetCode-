@@ -1,5 +1,5 @@
 SELECT
-  trips.request_at AS Day,
+  Trips.request_at AS Day,
   ROUND(SUM(Trips.status != 'completed') / COUNT(*), 2) AS 'Cancellation Rate'
 FROM Trips
 INNER JOIN Users AS Clients
