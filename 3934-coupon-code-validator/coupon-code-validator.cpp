@@ -21,8 +21,7 @@ public:
         vector<string> ans;
         for (int i : idx) {
             ans.push_back(code[i]);
-        }
-        return ans;
+        } return ans;
     }
 
 private:
@@ -32,7 +31,6 @@ private:
             if (!isalnum(c) && c != '_') {
                 return false;
             }
-        }
-        return true;
+        } return true;
     }
 };
