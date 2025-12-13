@@ -25,9 +25,7 @@ private:
     bool check(const string& s) {
         if (s.empty()) return false;
         for (char c : s) {
-            if (!isalnum(c) && c != '_') {
-                return false;
-            }
+            if (!isalnum(c) && c != '_') return false;
         } return true;
     }
 };
