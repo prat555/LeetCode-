@@ -8,9 +8,7 @@ public:
             const string& c = code[i];
             const string& b = businessLine[i];
             bool a = isActive[i];
-            if (a && bs.count(b) && check(c)) {
-                idx.push_back(i);
-            }
+            if (a && bs.count(b) && check(c)) idx.push_back(i);
         }
 
         sort(idx.begin(), idx.end(), [&](int i, int j) {
