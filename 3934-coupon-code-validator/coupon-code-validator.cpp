@@ -17,9 +17,8 @@ public:
         });
 
         vector<string> ans;
-        for (int i : idx) {
-            ans.push_back(code[i]);
-        } return ans;
+        for (int i : idx) ans.push_back(code[i]);
+        return ans;
     }
 
 private:
