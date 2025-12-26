@@ -5,7 +5,7 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        dp = [0]*(len(prices)+1)
+        dp=[0]*(len(prices)+1)
         result=0
         for i in xrange(k):
             x, y = float("-inf"), float("-inf")
