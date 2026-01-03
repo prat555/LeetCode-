@@ -9,8 +9,6 @@ class Solution {
       const long nextColor3 = color2 * 2 + color3 * 2;
       color2 = nextColor2 % kMod;
       color3 = nextColor3 % kMod;
-    }
-
-    return (color2 + color3) % kMod;
+    } return (color2 + color3) % kMod;
   }
 };
