@@ -13,7 +13,6 @@ class Solution {
       return a.first < b.first || (a.first == b.first && a.second < b.second);
     };
     set<pair<long, int>, decltype(comp)> pairSums(comp);
-
     for (int i = 0; i < n; ++i) {
       nextIndices[i] = i + 1;
       prevIndices[i] = i - 1;
