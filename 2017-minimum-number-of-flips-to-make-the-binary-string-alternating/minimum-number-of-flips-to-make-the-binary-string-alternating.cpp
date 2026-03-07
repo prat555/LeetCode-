@@ -2,7 +2,7 @@ class Solution {
 public:
     int minFlips(string s) {
         int n=s.size(), cnt=0;
-        string target = "01";
+        string target="01";
         for (int i=0; i<n; ++i) {
             if (s[i]!=target[i & 1]) ++cnt;
         } int ans=min(cnt, n-cnt);
