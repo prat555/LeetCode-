@@ -1,7 +1,7 @@
 class Solution {
  public:
   int numberOfSubmatrices(vector<vector<char>>& grid) {
-    const int m=grid.size(),n=grid[0].size();
+    const int m=grid.size(), n=grid[0].size();
     int ans=0;
     vector<vector<int>> x(m+1, vector<int>(n+1)), y(m+1, vector<int>(n+1));
     for (int i=0; i<m; ++i){
