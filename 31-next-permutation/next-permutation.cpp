@@ -15,6 +15,6 @@ public:
                 swap(nums[k],nums[i]);
                 break;
             }
-        } sort(nums.begin()+k+1,nums.end());
+        } reverse(nums.begin()+k+1,nums.end());
     }
 };
