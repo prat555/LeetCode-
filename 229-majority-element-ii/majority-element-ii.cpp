@@ -1,19 +1,23 @@
 class Solution {
 public:
     vector<int> majorityElement(vector<int>& nums) {
-        if (nums==vector<int>{3,3,3,3,3,3,3}) return {3};
-        if (nums==vector<int>{8,8,8,8}) return {8};
-        if (nums.size()==2){
-            if (nums[0]==nums[1]) return {nums[0]};
-            return nums;
-        } sort(nums.begin(),nums.end());
-        int k=nums.size()/3;
-        vector<int> kk;
-        for (int i=0; i<nums.size()-k; i++){
-            if (nums[i]==nums[i+k]){
-                kk.push_back(nums[i]);
-                i+=k;
-            } 
-        } return kk;
+        int cnd1, cnt1=0, cnd2, cnt2=0;
+        for (int n:nums){
+            if (n==cnd1) cnt1++;
+            else if (n==cnd2) cnt2++;
+            else if (cnt1==0){
+                cnd1=n;
+                cnt1++;
+            } else if (cnt2==0){
+                cnd2=n;
+                cnt2++;
+            } else {
+                cnt1--;
+                cnt2--;
+            }
+        } vector<int> ans;
+        if (count(nums.begin(),nums.end(),cnd1)>nums.size()/3) ans.push_back(cnd1);
+        if (count(nums.begin(),nums.end(),cnd2)>nums.size()/3) ans.push_back(cnd2);
+        return ans;
     }
 };
